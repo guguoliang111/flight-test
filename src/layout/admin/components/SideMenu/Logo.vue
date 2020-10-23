@@ -11,7 +11,7 @@
 export default {
   data () {
     return {
-      title: '土壤管理智能平台',
+      title: '典型地物光谱数据库管理系统',
       collapse: true
     }
   }

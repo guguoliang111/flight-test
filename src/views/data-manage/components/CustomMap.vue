@@ -151,6 +151,21 @@ export default {
       }
       return style
     },
+    addDelTif (data) {
+      const { topLeftLatitude, topLeftLongitude, bottomRightLatitude, bottomRightLongitude, url } = data
+      if (this.trtif) {
+        this.trtif.remove()
+        this.trtif = null
+      }
+      var latlon = [[topLeftLatitude, topLeftLongitude], [bottomRightLatitude, bottomRightLongitude]]
+      this.map.flyToBounds(latlon)
+      console.log(url)
+      this.trtif = L.tileLayer.wms(`${this.$geoServer}/geoserver/wms`, {
+        layers: url,
+        format: 'image/png',
+        transparent: true
+      }).addTo(this.map)
+    },
     addTif (list) { // 展示tif数据
       const layers = list.map(item => {
         const { url } = item
@@ -207,6 +222,7 @@ export default {
       return shuibaPoints
     },
     addPolygon (list) { // 展示polygon数据
+      console.log(list)
       const polygons = list.map(item => {
         const {
           topLeftLatitude, topLeftLongitude, topRightLatitude, topRightLongitude,

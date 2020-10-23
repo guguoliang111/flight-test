@@ -146,7 +146,6 @@ export default {
     },
     // 展示polygon数据
     addPolygon (data) {
-      console.log(data)
       this.clearShp()
       // eslint-disable-next-line camelcase
       const { max_lat, max_lon, min_lat, min_lon } = data
@@ -166,6 +165,36 @@ export default {
         })
         this.imgLayer = L.layerGroup(polygons).addTo(this.map)
         this.shp.push(this.imgLayer)
+      }
+    },
+    // 处理多点位渲染
+    dAddPolygon (data) {
+      this.clearShp()
+      // eslint-disable-next-line camelcase
+      const { max_lat, max_lon, min_lat, min_lon } = data
+      // eslint-disable-next-line camelcase
+      this.map.flyToBounds([[max_lat, max_lon], [min_lat, min_lon]])
+      if (this.imgLayer) {
+        this.imgLayer.remove()
+        this.imgLayer = null
+      } else {
+        const polygons = data.data.map(item => {
+          const latlngs = item.satus
+          return L.polygon(latlngs)
+        })
+        this.imgLayer = L.layerGroup(polygons).addTo(this.map)
+        this.shp.push(this.imgLayer)
+      }
+    },
+    // 详情也买type === 6 处理多点位渲染
+    detlAddPolygon (data) {
+      this.clearShp()
+      if (this.delLayer) {
+        this.delLayer.remove()
+        this.delLayer = null
+      } else {
+        this.delLayer = L.polygon(data).addTo(this.map)
+        this.shp.push(this.delLayer)
       }
     },
     // 展示详情页面中的polygon数据
@@ -215,7 +244,6 @@ export default {
     },
     addTif (data, type, latlon) { // 添加tif
       this.clearShp()
-      console.log(data)
       if (this.trtif) {
         this.trtif.remove()
       }
@@ -228,10 +256,8 @@ export default {
           sld: `${this.$geoServer}/soil/sld/${data.data.url.split(':')[1]}.sld`
         }).addTo(this.map)
       } else {
-        console.log(data)
         this.map.flyToBounds(latlon)
         this.trtif = data.data.map(item => {
-          console.log(item.url)
           L.tileLayer.wms(`${this.$geoServer}/geoserver/wms`, {
             layers: item.url,
             format: 'image/png',
@@ -247,7 +273,6 @@ export default {
         this.trtif = null
       }
       this.map.flyToBounds(latlon)
-      console.log(data.url)
       this.trtif = L.tileLayer.wms(`${this.$geoServer}/geoserver/wms`, {
         layers: data.url,
         format: 'image/png',
@@ -267,7 +292,6 @@ export default {
             _this.$emit('showDetail', { lat: data[i].x, lon: data[i].y, id: data[i].id })
           })
           .on('mouseover', (e) => {
-            console.log('mouseover  ---', data[i])
             L.popup().setLatLng(e.latlng).setContent(`
               <div>
                 <span>${data[i].dk_name}</span>

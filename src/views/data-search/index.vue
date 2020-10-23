@@ -1,7 +1,7 @@
 <template>
   <div class="data-search-page">
     <el-card>
-      <el-row>
+      <el-row style="height: 100%">
         <el-col :span="24">
           <div class="top-tools">
             <el-row :gutter="1">
@@ -34,7 +34,7 @@
                         <span style="width: 100%;" slot="reference">坐标</span>
                     </el-popover>
                   </p>
-                  <p style="width: 33%;display: inline-block;">
+                  <!-- <p style="width: 33%;display: inline-block;">
                     <el-popover
                       placement="bottom-start"
                       width="300"
@@ -55,7 +55,7 @@
                       </el-row>
                       <span style="width: 100%;" slot="reference">SHP</span>
                     </el-popover>
-                  </p>
+                  </p> -->
                   <p style="width: 33%;display: inline-block;">
                     <el-popover
                       placement="bottom-start"
@@ -80,8 +80,9 @@
                 <h4><i class="iconfont iconceliang"></i> 地图工具</h4>
                 <div>
                   <span style="width: 33%;" @click="drawPoint">i查询</span>
-                  <span style="width: 33%;" @click="takeLineMeasure">距离量算</span>
-                  <span style="width: 33%;" @click="takeAreaMeasure">面积量算</span>
+                  <span style="width: 33%;" >漫游</span>
+                  <!-- <span style="width: 33%;" @click="takeLineMeasure">距离量算</span> -->
+                  <!-- <span style="width: 33%;" @click="takeAreaMeasure">面积量算</span> -->
                 </div>
               </el-col>
               <el-col class="tool-item" :span="3">
@@ -131,7 +132,7 @@
                   <span style="width: 49%;" @click="drawPolygon">多边形</span>
                 </div>
               </el-col>
-              <el-col class="tool-item" :span="6">
+              <!-- <el-col class="tool-item" :span="6">
                 <h4><i class="iconfont iconnewcoinhangqing"></i> 行情</h4>
                 <div>
                   <p style="width: 32%;display: inline-block;">
@@ -153,7 +154,7 @@
                     </el-dropdown>
                   </p>
                 </div>
-              </el-col>
+              </el-col> -->
             </el-row>
           </div>
         </el-col>
@@ -180,7 +181,7 @@
         </el-col>
       </el-row>
     </el-card>
-    <el-dialog :title="pages.name" :visible.sync="dialogTableVisible" @close="closeDialog">
+    <!-- <el-dialog :title="pages.name" :visible.sync="dialogTableVisible" @close="closeDialog">
       <div class="search_box">
         <div class="lab_box">
           <label>作物名称</label>
@@ -227,13 +228,9 @@
         <el-table-column property="up_time" label="时间" align="center"></el-table-column>
       </el-table>
         <el-pagination style="text-align: center; margin-top: 20px" background layout="total, prev, pager, next, jumper" @current-change="setPage" :page-size="page.pageSize" @prev-click="setPage" @next-click="setPage" :total="page.total"></el-pagination>
-    </el-dialog>
-    <el-dialog title="作物品种" :visible.sync="dialogShow">
-      <el-table height="484" :header-cell-style="{background:'#D4EDF9'}" :data="cropList">
-        <el-table-column type="index" label="序号" align="center"></el-table-column>
-        <el-table-column property="product" label="产品/品种" align="center"></el-table-column>
-      </el-table>
-        <el-pagination style="text-align: center; margin-top: 20px" background layout="total, prev, pager, next, jumper" @current-change="setPage" :page-size="page.pageSize" @prev-click="setPage" @next-click="setPage" :total="page.total"></el-pagination>
+    </el-dialog> -->
+    <el-dialog title="作物品种" class="el_dialog" :visible.sync="isShow">
+      <img class="img" src="@/assets/images/show.jpg" alt="">
     </el-dialog>
   </div>
 </template>
@@ -256,6 +253,7 @@ export default {
   },
   data () {
     return {
+      isShow: false,
       dialog: false,
       defaultProps: {
         children: 'children',
@@ -365,27 +363,27 @@ export default {
       )
     },
     handleCheckboxChange (flag, node) {
-      if (typeof node.id === 'string' && node.id.includes('yj')) {
-        if (flag) {
-          this.getEarlyWarning(node.id, node.label.replace('H', ''))
-        } else {
-          this.$refs.cusMap.removeWeatherPoints(node.id)
-        }
+      // if (typeof node.id === 'string' && node.id.includes('yj')) {
+      if (flag) {
+        this.isShow = true
       } else {
-        const { id, type, label } = node
-        if (type === 0) {
-          this.viewShpData(flag, id, type, label)
-        } else if (type === 2) {
-          this.nodeId = id
-          this.handleHQ(label)
-        } else if (type === 1) {
-          this.viewTifData(flag, id, type, label)
-        } else if (type === 3) {
-          this.viewImgData(flag, id, type, label)
-        } else if (type === 4) {
-          this.viewPolygonData(flag, id, type, label)
-        }
+        this.isShow = false
       }
+      // } else {
+      //   const { id, type, label } = node
+      //   if (type === 0) {
+      //     this.viewShpData(flag, id, type, label)
+      //   } else if (type === 2) {
+      //     this.nodeId = id
+      //     this.handleHQ(label)
+      //   } else if (type === 1) {
+      //     this.viewTifData(flag, id, type, label)
+      //   } else if (type === 3) {
+      //     this.viewImgData(flag, id, type, label)
+      //   } else if (type === 4) {
+      //     this.viewPolygonData(flag, id, type, label)
+      //   }
+      // }
     },
     async viewShpData (flag, id, type, label) {
       if (flag) {
@@ -730,7 +728,15 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+::v-deep .el-dialog__body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+::v-deep .el-card__body {
+   height: 100%;
+}
   .data-search-page {
     height: 100%;
     .el-card {

@@ -1,46 +1,35 @@
 <template>
-  <div class="data-manege-page">
-    <el-card>
-      <h3>数据列表</h3>
-      <!-- <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" router>
-        <el-menu-item index="/dataManage/list">数据列表</el-menu-item>
-        <el-menu-item index="/dataManage/landManage">地块管理</el-menu-item>
-        <el-menu-item index="/dataManage/operationRecord">田间操作记录</el-menu-item>
-      </el-menu> -->
-      <div class="inner-wrap">
-        <search-form :items="searchItems" :search="search" @change="handleLevel1Change" @btnClick="handleSearch" />
-          <div class="btn_box">
-            <el-butto class="del">删除</el-butto>
-            <el-butto class="change">入库</el-butto>
-          </div>
-          <el-table
-            :data="dataList"
-            ref="taskTable"
-            stripe
-            :header-row-style="{ background: '#D0EDF7', color: '#303331' }"
-            style="width: 100%;font-size: 14px;"
-            size="mini"
-            >
-              <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
-              <el-table-column prop="name" label="数据名称" align="center"></el-table-column>
-              <el-table-column prop="edit" label="数据简介" align="center" ></el-table-column>
-              <el-table-column prop="type" width="80" label="数据类型" align="center" ></el-table-column>
-              <el-table-column prop="geshi" width="80" label="数据格式" align="center" ></el-table-column>
-              <el-table-column prop="bigtime" label="入库时间" align="center" ></el-table-column>
-              <el-table-column label="操作" align="center">
-                <template slot-scope="scope">
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">查看</el-button>
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">申请</el-button>
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">购物车</el-button>
-                  <el-button type="text" size="mini" @click="handleDown(scope.row)">删除</el-button>
-                </template>
-              </el-table-column>
-          </el-table>
-          <!-- 分页组件 -->
-          <pagination class="pagination" :page="page" @changePage="changePage"></pagination>
-      </div>
-    </el-card>
+  <div class="data-manage-list">
+    <!-- 搜索表单组件 -->
+    <search-form :items="searchItems" :search="search" @change="handleLevel1Change" @btnClick="handleSearch" />
+    <div class="btn_box">
+      <el-butto class="del">删除</el-butto>
+    </div>
+    <el-table
+      :data="dataList"
+      ref="taskTable"
+      stripe
+      :header-row-style="{ background: '#D0EDF7', color: '#303331' }"
+      style="width: 100%;font-size: 14px;"
+      size="mini"
+      >
+        <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
+        <el-table-column prop="name" label="数据名称" align="center"></el-table-column>
+        <el-table-column prop="edit" label="数据简介" align="center" ></el-table-column>
+        <el-table-column prop="type" width="80" label="数据类型" align="center" ></el-table-column>
+        <el-table-column prop="geshi" width="80" label="数据格式" align="center" ></el-table-column>
+        <el-table-column prop="bigtime" label="入库时间" align="center" ></el-table-column>
+        <el-table-column prop="endtime" label="申请时间" align="center" ></el-table-column>
+        <el-table-column prop="tel" width="80" label="状态" align="center" ></el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button type="text" size="mini" @click="handleEdit(scope.row)">查看</el-button>
+            <el-button type="text" size="mini" @click="handleDown(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+    </el-table>
+    <!-- 分页组件 -->
+    <pagination class="pagination" :page="page" @changePage="changePage"></pagination>
   </div>
 </template>
 
@@ -58,7 +47,6 @@ export default {
   mixins: [pagination],
   data () {
     return {
-      radio: '系统日志',
       isEditData: false,
       isDownData: false,
       searchItems: [],
@@ -238,10 +226,10 @@ export default {
   },
   created () {
     this.searchItems = [
-      { id: 1, label: '操作人名称', type: 'input', value: 'name', placeholder: '请输入操作人名称' },
-      // { id: 2, type: 'select', value: 'level2', placeholder: '请选择二级分类', selectOption: [] },
-      { id: 3, label: '操作IP', type: 'input', value: 'name', placeholder: '请输入操作IP' },
-      { id: 5, label: '记录时间', type: 'date-picker', value: 'times' },
+      { id: 1, label: '数据分类', type: 'select', value: 'level1', changeEvent: true, placeholder: '请选择一级分类', selectOption: [] },
+      { id: 2, type: 'select', value: 'level2', placeholder: '请选择二级分类', selectOption: [] },
+      { id: 3, label: '数据名称', type: 'input', value: 'name', placeholder: '请输入数据名称' },
+      { id: 5, label: '最近更新时间', type: 'date-picker', value: 'times' },
       { id: 6, type: 'button', btnType: 'danger', btnTxt: '检索' }
     ]
   },
@@ -254,13 +242,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-h3 {
-  padding: 10px 0;
-  border-bottom: 1px solid #E1E1E1;
-}
-.inner-wrap {
-  margin-top: 10px;
-}
 .btn_box {
   display: flex;
   margin-bottom: 10px;
@@ -275,8 +256,8 @@ h3 {
     margin-left: 10px;
     background-color: #4BC2FE;
     padding: 3px 10px;
-    color: #fff;
     cursor: pointer;
+    color: #fff;
     border-radius: 4px;
   }
 }

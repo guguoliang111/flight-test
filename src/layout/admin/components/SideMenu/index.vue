@@ -29,10 +29,11 @@ export default {
     getRoutes () {
       this.sidemenu = [
         { path: '/home', meta: { title: '首页', access: 'basemap' } },
-        { path: '/dataSearch', meta: { title: '数据查询', access: 'thematicdata' } },
+        { path: '/dataSearch', meta: { title: '数据浏览', access: 'thematicdata' } },
         { path: '/dataManage', meta: { title: '数据管理', access: 'task' } },
-        { path: '/resourceDir', meta: { title: '资源目录', access: 'datasummary' } },
-        { path: '/userManage', meta: { title: '用户管理', access: 'progress' } }
+        { path: '/resourceDir', meta: { title: '目录管理', access: 'datasummary' } },
+        { path: '/orderManagement', meta: { title: '订单管理', access: 'progress' } },
+        { path: '/userManage', meta: { title: '系统管理', access: 'progress' } }
       ]
     }
   },

@@ -35,83 +35,108 @@ export const asyncRoutes = [
         component: () => import('@/views/home')
       },
       {
-        path: '/detail',
-        name: 'Detail',
-        meta: {
-          title: '详情'
-        },
-        component: () => import('@/views/home/components/detail')
-      },
-      {
         path: '/dataSearch',
         name: 'DataSearch',
-        meta: { title: '数据查询' },
+        meta: {
+          title: '数据浏览'
+        },
         component: () => import('@/views/data-search')
       },
       {
         path: '/dataManage',
         name: 'DataManage',
         meta: { title: '数据管理' },
-        component: () => import('@/views/data-manage'),
-        redirect: '/dataManage/list',
-        children: [
-          {
-            path: 'list',
-            name: 'DataList',
-            meta: {
-              title: '数据列表'
-            },
-            component: () => import('@/views/data-manage/list')
-          },
-          {
-            path: 'landManage',
-            name: 'LandManage',
-            meta: {
-              title: '地块管理'
-            },
-            component: () => import('@/views/data-manage/land-manage')
-          },
-          {
-            path: 'operationRecord',
-            name: 'LandOperationRecord',
-            meta: {
-              title: '田间操作记录'
-            },
-            component: () => import('@/views/data-manage/operation-record')
-          },
-          {
-            path: 'xlsxView/:id/:type',
-            name: 'XlsxView',
-            meta: {
-              title: '数据查看'
-            },
-            component: () => import('@/views/data-manage/xlsx-view')
-          }
-        ]
+        component: () => import('@/views/data-manage')
       },
       {
         path: '/resourceDir',
         name: 'ResourceDir',
-        meta: { title: '资源目录' },
+        meta: {
+          title: '目录管理'
+        },
         component: () => import('@/views/resource-dir')
+      },
+      {
+        path: '/orderManagement',
+        name: 'OrderManagement',
+        meta: {
+          title: '订单管理'
+        },
+        redirect: '/OrderManagement/shoppingYrolley',
+        component: () => import('@/views/order-management'),
+        children: [{
+          path: 'shoppingYrolley',
+          name: 'ShoppingYrolley',
+          meta: {
+            title: '购物车'
+          },
+          component: () => import('@/views/order-management/shopping-trolley')
+        },
+        {
+          path: 'applicationRecord',
+          name: 'ApplicationRecord',
+          meta: {
+            title: '申请记录'
+          },
+          component: () => import('@/views/order-management/application-record')
+        },
+        {
+          path: 'orderHistory',
+          name: 'OrderHistory',
+          meta: {
+            title: '历史订单'
+          },
+          component: () => import('@/views/order-management/order-history')
+        },
+        {
+          path: 'orderReview',
+          name: 'OrderReview',
+          meta: {
+            title: '订单审核'
+          },
+          component: () => import('@/views/order-management/order-review')
+        }
+        ]
       },
       {
         path: '/userManage',
         name: 'UserManage',
-        meta: { title: '用户管理' },
-        component: () => import('@/views/user-manage')
+        meta: {
+          title: '系统管理'
+        },
+        redirect: '/userManage/userManagement',
+        component: () => import('@/views/user-manage'),
+        children: [{
+          path: 'userManagement',
+          name: 'userManagement',
+          meta: {
+            title: '用户管理'
+          },
+          component: () => import('@/views/user-manage/user-management')
+        },
+        {
+          path: 'logManagement',
+          name: 'LogManagement',
+          meta: {
+            title: '日志管理'
+          },
+          component: () => import('@/views/user-manage/log-management')
+        },
+        {
+          path: 'systemMonitoring',
+          name: 'SystemMonitoring',
+          meta: {
+            title: '系统监控'
+          },
+          component: () => import('@/views/user-manage/system-monitoring')
+        }
+        ]
       },
       {
         path: '/userCenter',
         name: 'UserCenter',
         meta: { title: '用户中心' },
         component: () => import('@/views/user-center')
-      },
-      {
-        path: '/dataManage/view/:id/:flag',
-        name: 'DataView',
-        meta: { title: '数据查看' },
-        component: () => import('@/views/data-manage/view')
       }
     ]
   },

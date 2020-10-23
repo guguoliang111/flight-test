@@ -3,7 +3,7 @@
     <div class="top_icon">
       <i class="el-icon-menu"></i>
     </div>
-    <h2 class="top_tlt">土壤智能管理平台</h2>
+    <h2 class="top_tlt">典型地物光谱数据库管理系统</h2>
   </div>
   <!-- <el-breadcrumb class="breadcrumb" separator-class="el-icon-arrow-right">
     <transition-group name="breadcrumb">

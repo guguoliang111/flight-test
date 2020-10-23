@@ -3,7 +3,7 @@
     <div class="login-title">
       <img src="./logo.png">
       <div class="sys-title">
-        <h1>土壤管理智能平台</h1>
+        <h1>典型地物光谱数据库管理系统</h1>
       </div>
     </div>
     <div class="login-wrap">

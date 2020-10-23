@@ -100,6 +100,14 @@ export const getTkRemoteData = (name = {}) => // 获取首页市场 =>>>肥料�
     data: name
   })
 
+export const getAcdAndErod = (name = {}) => // 详情页面 =>>> 积温积雨
+  request({
+    url: 'data.searchAccumulatedAndEroded',
+    method: 'get',
+    data: name
+  })
+
+
 export const getHnwnyjgByName = (name = {}) => // 获取首页市场 =>>>农药价格
   request({
     url: 'search.hnwnyjgByName',
@@ -210,6 +218,16 @@ export const getExcelData = (name = {}) => // 首页作物品种公用
 export const getProductCategory = (data = {}) =>
   request({
     url: 'data.getExcelDateNames',
+    data
+  })
+
+/**
+ * 地块管理 无人机影像
+ * @param {}
+ */
+export const searchUav = (data = {}) =>
+  request({
+    url: 'search.uav',
     data
   })
 

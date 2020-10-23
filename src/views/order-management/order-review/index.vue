@@ -1,46 +1,37 @@
 <template>
-  <div class="data-manege-page">
-    <el-card>
-      <h3>数据列表</h3>
-      <!-- <el-menu :default-active="$route.path" class="el-menu-demo" mode="horizontal" router>
-        <el-menu-item index="/dataManage/list">数据列表</el-menu-item>
-        <el-menu-item index="/dataManage/landManage">地块管理</el-menu-item>
-        <el-menu-item index="/dataManage/operationRecord">田间操作记录</el-menu-item>
-      </el-menu> -->
-      <div class="inner-wrap">
-        <search-form :items="searchItems" :search="search" @change="handleLevel1Change" @btnClick="handleSearch" />
-          <div class="btn_box">
-            <el-butto class="del">删除</el-butto>
-            <el-butto class="change">入库</el-butto>
-          </div>
-          <el-table
-            :data="dataList"
-            ref="taskTable"
-            stripe
-            :header-row-style="{ background: '#D0EDF7', color: '#303331' }"
-            style="width: 100%;font-size: 14px;"
-            size="mini"
-            >
-              <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
-              <el-table-column prop="name" label="数据名称" align="center"></el-table-column>
-              <el-table-column prop="edit" label="数据简介" align="center" ></el-table-column>
-              <el-table-column prop="type" width="80" label="数据类型" align="center" ></el-table-column>
-              <el-table-column prop="geshi" width="80" label="数据格式" align="center" ></el-table-column>
-              <el-table-column prop="bigtime" label="入库时间" align="center" ></el-table-column>
-              <el-table-column label="操作" align="center">
-                <template slot-scope="scope">
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">查看</el-button>
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">申请</el-button>
-                  <el-button type="text" size="mini" @click="handleEdit(scope.row)">购物车</el-button>
-                  <el-button type="text" size="mini" @click="handleDown(scope.row)">删除</el-button>
-                </template>
-              </el-table-column>
-          </el-table>
-          <!-- 分页组件 -->
-          <pagination class="pagination" :page="page" @changePage="changePage"></pagination>
-      </div>
-    </el-card>
+  <div class="data-manage-list">
+    <!-- 搜索表单组件 -->
+    <search-form :items="searchItems" :search="search" @change="handleLevel1Change" @btnClick="handleSearch" />
+    <div class="btn_box">
+      <el-butto class="del">不通过</el-butto>
+      <el-butto class="change">通过</el-butto>
+    </div>
+    <el-table
+      :data="dataList"
+      ref="taskTable"
+      stripe
+      :header-row-style="{ background: '#D0EDF7', color: '#303331' }"
+      style="width: 100%;font-size: 14px;"
+      size="mini"
+      >
+        <el-table-column label="序号" type="index" align="center" width="80"></el-table-column>
+        <el-table-column prop="name" label="数据名称" align="center"></el-table-column>
+        <el-table-column prop="edit" label="数据简介" align="center" ></el-table-column>
+        <el-table-column prop="people" width="120" label="申请人" align="center" ></el-table-column>
+        <el-table-column prop="juese" label="申请人角色" align="center" ></el-table-column>
+        <el-table-column prop="type" width="120" label="数据类型" align="center" ></el-table-column>
+        <el-table-column prop="geshi" width="120" label="数据格式" align="center" ></el-table-column>
+        <el-table-column prop="bigtime" label="入库时间" align="center" ></el-table-column>
+        <el-table-column prop="endtime" label="申请时间" align="center" ></el-table-column>
+        <el-table-column label="状态" align="center">
+          <template slot-scope="scope">
+            <el-button type="text" size="mini" @click="handleEdit(scope.row)">通过</el-button>
+            <el-button type="text" size="mini" @click="handleDown(scope.row)">不通过</el-button>
+          </template>
+        </el-table-column>
+    </el-table>
+    <!-- 分页组件 -->
+    <pagination class="pagination" :page="page" @changePage="changePage"></pagination>
   </div>
 </template>
 
@@ -58,7 +49,6 @@ export default {
   mixins: [pagination],
   data () {
     return {
-      radio: '系统日志',
       isEditData: false,
       isDownData: false,
       searchItems: [],
@@ -77,7 +67,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -88,7 +77,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -99,7 +87,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -110,7 +97,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -121,7 +107,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -132,7 +117,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -143,7 +127,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -154,7 +137,6 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         },
@@ -165,30 +147,13 @@ export default {
           juese: '普通用户',
           type: '表格',
           geshi: 'xlsx',
-          tel: '审核中',
-          bigtime: '2020-10-20  15:24:45',
-          endtime: '2020-10-20  15:24:45'
-        },
-        {
-          name: '光谱数据名称',
-          edit: '此数据详细记录了***的光谱信息',
-          people: '王小虎',
-          juese: '普通用户',
-          type: '表格',
-          geshi: 'xlsx',
-          tel: '审核中',
           bigtime: '2020-10-20  15:24:45',
           endtime: '2020-10-20  15:24:45'
         }
       ],
-      dataType: [
-        { id: 1, name: '矢量数据', value: 0, ext: '.shp' },
-        { id: 2, name: '影像数据', value: 1, ext: '.tif' },
-        { id: 3, name: '资料数据', value: 2, ext: '.xlsx' },
-        { id: 4, name: '影像数据', value: 3, ext: '.tiff' },
-        { id: 5, name: 'jp2数据', value: 4, ext: '.jp2' },
-        { id: 5, name: '影像数据', value: 5, ext: '.tif' }
-      ],
+      // loading: {
+      //   dataList: false
+      // },
       currentEditData: {},
       currentDownData: {}
     }
@@ -214,23 +179,17 @@ export default {
       // }
     },
     handleEdit (row) { // 数据编辑
-      this.isEditData = true
-      this.currentEditData = row
+      // this.isEditData = true
+      // this.currentEditData = row
     },
     handleDown (row) { // 数据提取
-      this.isDownData = true
-      this.currentDownData = row
+      // this.isDownData = true
+      // this.currentDownData = row
     },
     handleSearch () { // 检索
       this.page.pageNum = 1
       this.getList()
     },
-    // getType (row, column, cellValue, index) {
-    //   return this.dataType.find(item => item.value === cellValue).name
-    // },
-    // getExt (row, column, cellValue, index) {
-    //   return this.dataType.find(item => item.value === cellValue).ext
-    // },
     handleLevel1Change (id) {
       this.search.level2 = null
       this.searchItems[1].selectOption = id ? this.dir[this.dir.findIndex(item => item.id === id)].children.map(({ name, id }) => ({ name, value: id })) : []
@@ -238,10 +197,9 @@ export default {
   },
   created () {
     this.searchItems = [
-      { id: 1, label: '操作人名称', type: 'input', value: 'name', placeholder: '请输入操作人名称' },
-      // { id: 2, type: 'select', value: 'level2', placeholder: '请选择二级分类', selectOption: [] },
-      { id: 3, label: '操作IP', type: 'input', value: 'name', placeholder: '请输入操作IP' },
-      { id: 5, label: '记录时间', type: 'date-picker', value: 'times' },
+      { id: 3, label: '申请人', type: 'input', value: 'name', placeholder: '请输入申请人名称' },
+      { id: 3, label: '申请人角色', type: 'input', value: 'name', placeholder: '请输入数据名称' },
+      { id: 5, label: '申请时间', type: 'date-picker', value: 'times' },
       { id: 6, type: 'button', btnType: 'danger', btnTxt: '检索' }
     ]
   },
@@ -254,29 +212,22 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-h3 {
-  padding: 10px 0;
-  border-bottom: 1px solid #E1E1E1;
-}
-.inner-wrap {
-  margin-top: 10px;
-}
 .btn_box {
   display: flex;
   margin-bottom: 10px;
   .del {
     background-color: #FE4B4B;
     padding: 3px 10px;
-    color: #fff;
     cursor: pointer;
+    color: #fff;
     border-radius: 4px;
   }
   .change {
     margin-left: 10px;
+    cursor: pointer;
     background-color: #4BC2FE;
     padding: 3px 10px;
     color: #fff;
-    cursor: pointer;
     border-radius: 4px;
   }
 }

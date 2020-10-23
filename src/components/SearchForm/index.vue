@@ -27,7 +27,7 @@
         </el-date-picker>
       </template>
       <template v-else-if="item.type === 'button'">
-        <el-button :type="item.btnType" @click="$listeners.btnClick && $listeners.btnClick(item)">{{ item.btnTxt }}</el-button>
+        <el-button style="background: #4BC2FE; color: #fff;" @click="$listeners.btnClick && $listeners.btnClick(item)">{{ item.btnTxt }}</el-button>
       </template>
     </el-form-item>
   </el-form>
