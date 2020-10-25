@@ -2,6 +2,10 @@
   <div class="navbar">
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <div class="right-menu">
+       <span style="float: left; margin-right: 15px; cursor: pointer;">
+        <i class="el-icon-message-solid"></i>
+        消息
+      </span>
       <div class="username">
         <span style="margin-right: 46px; display: inline-block"> <i class="el-icon-date"></i> {{nowTime}}</span>
         <span class="username">欢迎！{{ user.realname }}</span>
@@ -103,7 +107,10 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    line-height: 40px;
+    
+    display: flex;
+    align-items: center;
+    // line-height: 40px;
     .username {
       display: inline-block;
       height: 40px;

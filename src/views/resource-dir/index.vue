@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { dirAdd, dirDelete } from '@/api/api'
+// import { dirAdd, dirDelete } from '@/api/api'
 import { mapGetters } from 'vuex'
 
 export default {
