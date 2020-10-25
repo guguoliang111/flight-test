@@ -1,7 +1,8 @@
 <template>
   <div class="login-page">
     <div class="login-title">
-      <img src="./logo.png">
+      <div style="height:120px"></div>
+      <!-- <img src="./logo.png"> -->
       <div class="sys-title">
         <h1>典型地物光谱数据库管理系统</h1>
       </div>

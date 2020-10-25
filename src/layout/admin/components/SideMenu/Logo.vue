@@ -1,7 +1,8 @@
 <template>
   <div class="sidemenu-logo-container" :class="{ 'collapse': collapse }">
     <router-link key="collapse" class="sidemenu-logo-link" to="/">
-      <img src="./logo.png" class="sidemenu-logo">
+      <!-- <img src="./logo.png" class="sidemenu-logo"> -->
+      <div style="height: 150px"></div>
       <h1 class="sidemenu-title">{{ title }}</h1>
     </router-link>
   </div>

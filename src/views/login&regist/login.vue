@@ -79,7 +79,7 @@ export default {
       }, {})
     },
     toRegist () {
-      this.$router.push('/regist')
+      // this.$router.push('/regist')
     },
     handleEnter (event) {
       if (event.keyCode === 13) {
