@@ -35,10 +35,6 @@ export default {
   },
   watch: {},
   mounted () {
-    setTimeout(() => {
-      // this.drawLine()
-      // this.dsSohwLine()
-    }, 500)
   },
   methods: {
     drawLine () {
@@ -50,7 +46,7 @@ export default {
           formatter: '{a} <br/>{b} : {c} '
         },
         title: {
-          text: '45人', // 具体数量
+          text: '1024G', // 具体数量
           left: 'center',
           top: '50%',
           textStyle: {
@@ -64,7 +60,7 @@ export default {
           left: 'center',
           top: '44%',
           style: {
-            text: '用户', // 标题
+            text: '内存', // 标题
             textAlign: 'center',
             fill: '#333',
             fontSize: 14,
@@ -79,14 +75,14 @@ export default {
         color: ['#3AFF59', '#3AA5FF'],
         series: [
           {
-            name: '访问来源',
+            name: '内存',
             radius: ['60%', '75%'],
             avoidLabelOverlap: false,
             type: 'pie',
             center: ['50%', '50%'],
             data: [
-              { value: 10, name: '管理员' },
-              { value: 35, name: '普通用户' }
+              { value: 524, name: '剩余内存' },
+              { value: 500, name: '占用内存' }
             ],
             emphasis: {
               itemStyle: {
@@ -110,8 +106,7 @@ export default {
     dsSohwLine () {
       const that = this
       var date = [2020.01, 2020.02, 2020.03, 2020.04, 2020.05, 2020.06, 2020.07, 2020.08, 2020.09, 2020.10, 2020.11, 2020.12, 2020.01, 2020.02, 2020.03, 2020.04, 2020.05, 2020.06, 2020.07, 2020.08, 2020.09, 2020.10, 2020.11, 2020.12]
-      var data = [520, 23, 231, 548, 231, 546, 864, 520, 23, 231, 548, 231, 546, 864, 520, 23, 231, 548, 231, 546, 864, 520, 23, 231, 548, 231, 546, 864]
-      var data2 = [542, 123, 183, 458, 312, 156, 648, 542, 123, 183, 458, 312, 156, 648, 542, 123, 183, 458, 312, 156, 648, 542, 123, 183, 458, 312, 156, 648]
+      var data2 = [54, 23, 83, 48, 31, 15, 26, 42, 23, 13, 45, 32, 15, 68, 52, 23, 18, 48, 31, 15, 8, 52, 12, 13, 48, 32, 16, 48]
       const stChart = that.$echarts.init(that.$refs.sdChart)
       const stionObj = {
         tooltip: {
@@ -130,45 +125,18 @@ export default {
           height: '78%' // 图例高度
         },
         color: ['#F55078 ', '#65BFFF'],
-        legend: {
-          data: ['下载数据', '上传数据'],
-          right: 10
-        },
         xAxis: {
           type: 'category',
           boundaryGap: false,
           data: date
         },
         yAxis: {
-          name: '数量 (个)',
+          name: '内存使用率 (%)',
           type: 'value'
         },
         series: [
           {
-            name: '下载数据',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
-            itemStyle: {
-              color: 'rgba(245,80,120, 0.3)'
-            },
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: 'rgba(245,80,120, 0.4)'
-                },
-                {
-                  offset: 0.36,
-                  color: 'rgba(245,80,120, 0.4)'
-                }
-              ])
-            },
-            data: data
-          },
-          {
-            name: '上传数据',
+            name: '内存占用',
             type: 'line',
             smooth: true,
             symbol: 'none',

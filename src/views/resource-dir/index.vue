@@ -78,39 +78,39 @@ export default {
     }
   },
   methods: {
-    async addDir (level) { // 添加目录
-      if (this.dirname) {
-        await dirAdd({
-          level: this.currentLevel,
-          parent_id: this.parentId,
-          name: this.dirname
-        })
-        this.$store.dispatch('dir/getDir')
-        this.dialog = false
-      } else {
-        this.$message({ type: 'warning', message: '请输入目录名称' })
-      }
+    addDir (level) { // 添加目录
+      // if (this.dirname) {
+      //   await dirAdd({
+      //     level: this.currentLevel,
+      //     parent_id: this.parentId,
+      //     name: this.dirname
+      //   })
+      //   this.$store.dispatch('dir/getDir')
+      //   this.dialog = false
+      // } else {
+      //   this.$message({ type: 'warning', message: '请输入目录名称' })
+      // }
     },
     delDir (id) { // 删除目录
-      this.$confirm('此操作将永久删除该目录, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(async () => {
-        await dirDelete({ id })
-        this.$store.dispatch('dir/getDir')
-        this.$forceUpdate()
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
-        })
-      })
+      // this.$confirm('此操作将永久删除该目录, 是否继续?', '提示', {
+      //   confirmButtonText: '确定',
+      //   cancelButtonText: '取消',
+      //   type: 'warning'
+      // }).then(async () => {
+      //   await dirDelete({ id })
+      //   this.$store.dispatch('dir/getDir')
+      //   this.$forceUpdate()
+      //   this.$message({
+      //     type: 'success',
+      //     message: '删除成功!'
+      //   })
+      // })
     },
     handleAddDir (level, parentId) {
-      this.dirname = ''
-      this.currentLevel = level
-      this.parentId = parentId
-      this.dialog = true
+      // this.dirname = ''
+      // this.currentLevel = level
+      // this.parentId = parentId
+      // this.dialog = true
     }
   },
   created () {
