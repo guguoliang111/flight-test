@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-if="showId == 1" ref="myChart" id="myChart" :style="{width: width + 'px', height: height + 'px'}"></div>
+    <div v-if="showId == 3" ref="smChart" id="smChart" :style="{width: width + 'px', height: height + 'px'}"></div>
     <div v-if="showId == 2" ref="sdChart" id="sdChart" :style="{width: width + 'px', height: height + 'px'}"></div>
   </div>
 </template>
@@ -106,6 +107,72 @@ export default {
         ]
       }
       myChart.setOption(stionObj)
+    },
+    smawLine () {
+      const that = this
+      const smChart = that.$echarts.init(that.$refs.smChart)
+      const stionObj = {
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} '
+        },
+        title: {
+          text: 1024, // 具体数量
+          left: 'center',
+          top: '50%',
+          textStyle: {
+            color: '#2285E4',
+            fontSize: 14,
+            align: 'center'
+          }
+        },
+        graphic: {
+          type: 'text',
+          left: 'center',
+          top: '44%',
+          style: {
+            text: '数据下载量', // 标题
+            textAlign: 'center',
+            fill: '#333',
+            fontSize: 14,
+            fontWeight: 700
+          }
+        },
+        // legend: {
+        //   orient: 'vertical',
+        //   left: 'left',
+        //   data: ['管理员', '普通用户']
+        // },
+        color: ['#3AFF59', '#3AA5FF'],
+        series: [
+          {
+            name: '访问来源',
+            radius: ['60%', '75%'],
+            avoidLabelOverlap: false,
+            type: 'pie',
+            center: ['50%', '50%'],
+            data: [
+              { value: 524, name: '管理员' },
+              { value: 500, name: '普通用户' }
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            },
+            label: {
+              normal: {
+                textStyle: {
+                  color: '#606662'
+                }
+              }
+            }
+          }
+        ]
+      }
+      smChart.setOption(stionObj)
     },
     dsSohwLine () {
       const that = this
