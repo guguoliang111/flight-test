@@ -63,7 +63,7 @@
 
 <script>
 // import { dirAdd, dirDelete } from '@/api/api'
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 
 export default {
   name: 'DataManage',
@@ -74,7 +74,15 @@ export default {
       currentLevel2: null,
       currentLevel: 1,
       parentId: null,
-      currentLevelIndex: 0
+      currentLevelIndex: 0,
+      dir: [
+        { id: 1, name: '气象', children: [] },
+        { id: 2, name: '土壤', children: [] },
+        { id: 3, name: '土地利用', children: [] },
+        { id: 5, name: '作物管理', children: [] },
+        { id: 6, name: '遥感', children: [] },
+        { id: 7, name: '光谱数据', children: [{ id: 11, name: '波长范围' }] }
+      ]
     }
   },
   methods: {
@@ -117,7 +125,7 @@ export default {
     this.currentLevel1 = this.dir.length > 0 ? this.dir[0].id : null
   },
   computed: {
-    ...mapGetters(['dir'])
+    // ...mapGetters(['dir'])
   }
 }
 </script>
