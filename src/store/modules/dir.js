@@ -12,8 +12,8 @@ const mutations = {
 
 const actions = {
   async getDir ({ commit }) {
-    const { data } = await dirList()
-    commit('setDir', data.dir)
+    // const { data } = await dirList()
+    commit('setDir', {})
   }
 }
 

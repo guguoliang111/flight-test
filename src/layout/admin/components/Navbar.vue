@@ -47,7 +47,7 @@ export default {
   methods: {
     logout () {
       this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      this.$router.push('/')
     },
     // 显示当前时间（年月日时分秒）
     timeFormate (timeStamp) {

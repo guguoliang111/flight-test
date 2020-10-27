@@ -6,7 +6,7 @@ Vue.use(Router)
 
 export const constantRoutes = [
   {
-    path: '/login',
+    path: '/',
     name: 'Login',
     component: () => import('@/views/login&regist')
   },
@@ -19,13 +19,10 @@ export const constantRoutes = [
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true
-  }
-]
-
-export const asyncRoutes = [
+  },
   {
-    path: '/',
     component: Admin,
+    path: '/home',
     redirect: '/home',
     children: [
       {

@@ -104,26 +104,26 @@ export default {
       }
     },
     getDirList (queryString, cb) { // 一级目录
-      dirList({ level: 1 }).then(({ data }) => {
-        this.dir.level1 = data.data
-        cb(this.dir.level1.map(item => ({ ...item, value: item.name })))
-      })
-    },
-    getSubDirList (queryString, cb) { // 子目录
-      if (this.form[`level${this.currentDir - 1}`]) {
-        try {
-          subDirList({ parentId: this.currentSelectDir[`level${this.currentDir - 1}`] }).then(({ data }) => {
-            this.dir[`level${this.currentDir}`] = data.data
-            cb(this.dir[`level${this.currentDir}`].map(item => ({ ...item, value: item.name })))
-          })
-        } catch (err) {
-          cb()
-          this.$message({ type: 'error', message: '获取子目录失败' })
-        }
-      } else {
-        cb()
-        this.$message({ type: 'warning', message: '请先选择上级目录' })
-      }
+    //   dirList({ level: 1 }).then(({ data }) => {
+    //     this.dir.level1 = data.data
+    //     cb(this.dir.level1.map(item => ({ ...item, value: item.name })))
+    //   })
+    // },
+    // getSubDirList (queryString, cb) { // 子目录
+    //   if (this.form[`level${this.currentDir - 1}`]) {
+    //     try {
+    //       subDirList({ parentId: this.currentSelectDir[`level${this.currentDir - 1}`] }).then(({ data }) => {
+    //         this.dir[`level${this.currentDir}`] = data.data
+    //         cb(this.dir[`level${this.currentDir}`].map(item => ({ ...item, value: item.name })))
+    //       })
+    //     } catch (err) {
+    //       cb()
+    //       this.$message({ type: 'error', message: '获取子目录失败' })
+    //     }
+    //   } else {
+    //     cb()
+    //     this.$message({ type: 'warning', message: '请先选择上级目录' })
+    //   }
     },
     handleClosed () {
       this.currentDir = 1

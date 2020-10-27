@@ -53,22 +53,23 @@ export default {
       'login'
     ]),
     handleLogin () {
-      this.$formValidate(this, 'loginForm').then(async () => {
-        const loading = this.$loading({
-          lock: true,
-          text: 'Loading',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        })
-        try {
-          await this.login(this.loginForm)
-          this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
-        } catch (err) {
-          console.log(err)
-        } finally {
-          loading.close()
-        }
-      })
+      this.$router.push('home')
+      // this.$formValidate(this, 'loginForm').then(async () => {
+      //   const loading = this.$loading({
+      //     lock: true,
+      //     text: 'Loading',
+      //     spinner: 'el-icon-loading',
+      //     background: 'rgba(0, 0, 0, 0.7)'
+      //   })
+      //   try {
+      //     await this.login(this.loginForm)
+      //     this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+      //   } catch (err) {
+      //     console.log(err)
+      //   } finally {
+      //     loading.close()
+      //   }
+      // })
     },
     getOtherQuery (query) {
       return Object.keys(query).reduce((acc, cur) => {

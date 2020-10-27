@@ -40,7 +40,7 @@ module.exports = {
         }
       },
       [XZH]: { // 许仲昊
-        target: 'http://192.168.1.159:9099',
+        target: 'http://192.168.1.159:8080/soil',
         changeOrigin: true,
         pathRewrite: {
           ['^' + XZH]: ''

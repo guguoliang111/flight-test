@@ -240,8 +240,8 @@ import CustomMap from '../data-manage/components/CustomMap'
 import SelectCity from '@/components/SelectCity'
 import SearchResult from './components/result'
 import pagination from '@/mixins/pagination'
-import { getWeatherList, getEarlyWarning, uploadShp, getCitys, getCityPosition, getShuiba } from '@/api'
-import { getLastData, searchByPoint, searchByArea, searchByCondition, getExcelData, getHnwjByNamer, getHnwfljgByName, getHnwnyjgByName } from '@/api/api'
+import { getWeatherList, getEarlyWarning, getShuiba } from '@/api'
+import { getLastData, searchByPoint, getExcelData, getHnwjByNamer, getHnwfljgByName, getHnwnyjgByName } from '@/api/api'
 
 export default {
   name: 'DataSearch',
@@ -270,7 +270,666 @@ export default {
         city: '',
         county: ''
       },
-      treeData: [],
+      treeData: [
+        {
+          id: 'yj01',
+          label: '预警',
+          children: [
+            {
+              id: 'yj02',
+              label: '3H'
+            },
+            {
+              id: 'yj03',
+              label: '6H'
+            },
+            {
+              id: 'yj04',
+              label: '12H'
+            },
+            {
+              id: 'yj05',
+              label: '24H'
+            }
+          ]
+        },
+        {
+          id: 2,
+          parent_id: 0,
+          level: 1,
+          label: '气象',
+          create_time: '2020-09-03 14:09:07',
+          del: '0',
+          children: [
+            {
+              id: 90,
+              parent_id: 2,
+              level: 2,
+              label: '大气',
+              create_time: '2020-10-26 18:01:21',
+              del: '0',
+              children: []
+            },
+            {
+              id: 91,
+              parent_id: 2,
+              level: 2,
+              label: '温度',
+              create_time: '2020-10-26 18:02:02',
+              del: '0',
+              children: []
+            },
+            {
+              id: 48,
+              label: '10cm土壤温度',
+              url: 'null',
+              time: '2020-10-10 10:38:54',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 47,
+              label: '0-10cm土壤湿度',
+              url: 'null',
+              time: '2020-10-10 10:38:35',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 92,
+              label: '40cm土壤温度',
+              url: 'null',
+              time: '2020-10-10 10:38:54',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 94,
+              label: '10-40cm土壤湿度',
+              url: 'null',
+              time: '2020-10-10 10:38:35',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 95,
+              label: '积雨',
+              url: 'null',
+              time: '2020-10-20 17:52:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 98,
+              label: '积温',
+              url: 'null',
+              time: '2020-10-20 17:52:54',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 28,
+              label: '气温',
+              url: 'null',
+              time: '2020-09-22 18:26:19',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 30,
+              label: '降水量',
+              url: 'null',
+              time: '2020-09-27 11:20:04',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 44,
+              label: '辐射',
+              url: 'null',
+              time: '2020-10-10 10:37:12',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 45,
+              label: '比湿',
+              url: 'null',
+              time: '2020-10-10 10:37:48',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            },
+            {
+              id: 46,
+              label: '蒸散发',
+              url: 'null',
+              time: '2020-10-10 10:38:18',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 2,
+              isedit: 1
+            }
+          ]
+        },
+        {
+          id: 11,
+          parent_id: 0,
+          level: 1,
+          label: '土壤',
+          create_time: '2020-09-19 18:13:02',
+          del: '0',
+          children: [
+            {
+              id: 50,
+              label: '黏粒 (%)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 49,
+              label: '砂粒 (%)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 51,
+              label: '粉粒 (%)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 52,
+              label: 'pH_H20',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 53,
+              label: '电导率 (dS/m)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 54,
+              label: '有机碳 (% C)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 55,
+              label: '总氮 (g/kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 56,
+              label: '有效磷 (mg/kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 57,
+              label: '有效钾 (mg /Kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 58,
+              label: '交换性钙 (mg/Kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 59,
+              label: '交换性镁 (mg/Kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 60,
+              label: '交换性钠 (mg/Kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 61,
+              label: 'CEC (cmol(+)/Kg)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 62,
+              label: 'Base Saturation (%)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 63,
+              label: 'Bulk Density (g/cm3)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 64,
+              label: '孔隙率 (%)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 65,
+              label: '饱和导水率 (cm/d)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 66,
+              label: '土壤呼吸 (CO2 - Kg/ha/d)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 67,
+              label: '土壤厚度 (cm)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 68,
+              label: '土壤分类 (WRB)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            },
+            {
+              id: 69,
+              label: '饱和含水量 (cm3 cm-3)',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 11,
+              isedit: 1
+            }
+          ]
+        },
+        {
+          id: 14,
+          parent_id: 0,
+          level: 1,
+          label: '土地利用',
+          create_time: '2020-09-21 11:14:29',
+          del: '0',
+          children: [
+            {
+              id: 73,
+              label: '水体',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 0,
+              del: 0,
+              directoryid: 14,
+              isedit: 1
+            },
+            {
+              id: 74,
+              label: '农作物',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 14,
+              isedit: 1
+            },
+            {
+              id: 70,
+              label: 'GlobeLand30',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 14,
+              isedit: 1
+            },
+            {
+              id: 71,
+              label: 'ESACCI-LC',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 14,
+              isedit: 1
+            },
+            {
+              id: 72,
+              label: 'ChinaEco100',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 14,
+              isedit: 1
+            },
+            {
+              id: 75,
+              label: '保护区',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 14,
+              isedit: 1
+            }
+          ]
+        },
+        {
+          id: 19,
+          parent_id: 0,
+          level: 1,
+          label: '作物管理',
+          create_time: '2020-09-21 11:25:08',
+          del: '0',
+          children: [
+            {
+              id: 81,
+              label: '作物品种',
+              url: 'tr_zwlx',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 2,
+              del: 0,
+              directoryid: 19,
+              isedit: 0
+            },
+            {
+              id: 76,
+              label: '农田熟制',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 19,
+              isedit: 1
+            },
+            {
+              id: 77,
+              label: '物候',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 1,
+              del: 0,
+              directoryid: 19,
+              isedit: 1
+            },
+            {
+              id: 80,
+              label: '水坝',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 0,
+              del: 0,
+              directoryid: 19,
+              isedit: 1
+            },
+            {
+              id: 79,
+              label: '灌溉面积',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 0,
+              del: 0,
+              directoryid: 19,
+              isedit: 1
+            },
+            {
+              id: 78,
+              label: '施肥量',
+              url: 'tr_chemical_fertilizer',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 2,
+              del: 0,
+              directoryid: 19,
+              isedit: 0
+            }
+          ]
+        },
+        {
+          id: 20,
+          parent_id: 0,
+          level: 1,
+          label: '遥感',
+          create_time: '2020-09-26 09:52:09',
+          del: '0',
+          children: [
+            {
+              id: 85,
+              label: 'GF-1',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 3,
+              del: 0,
+              directoryid: 20,
+              isedit: 1
+            },
+            {
+              id: 86,
+              label: 'GF-6',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 3,
+              del: 0,
+              directoryid: 20,
+              isedit: 1
+            },
+            {
+              id: 83,
+              label: 'Sentinel-1',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 4,
+              del: 0,
+              directoryid: 20,
+              isedit: 1
+            },
+            {
+              id: 88,
+              label: '无人机数据',
+              url: 'nul',
+              time: '2020-10-13 18:01:27',
+              userid: 1,
+              type: 5,
+              del: 0,
+              directoryid: 20,
+              isedit: 1
+            },
+            {
+              id: 82,
+              label: 'Landsat',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 4,
+              del: 0,
+              directoryid: 20,
+              isedit: 1
+            },
+            {
+              id: 84,
+              label: 'Sentinel-2',
+              url: 'null',
+              time: '2020-10-10 10:42:17',
+              userid: 1,
+              type: 6,
+              del: 0,
+              directoryid: 20,
+              isedit: 1
+            }
+          ]
+        },
+        {
+          id: 21,
+          parent_id: 0,
+          level: 1,
+          label: '光谱数据',
+          create_time: '2020-09-26 09:52:21',
+          del: '0',
+          children: [
+            {
+              id: 83,
+              parent_id: 21,
+              level: 2,
+              label: '波长范围',
+              create_time: '2020-09-29 10:46:29',
+              del: '0'
+            }
+          ]
+        }
+      ],
       chooseShp: false,
       cityList: [],
       selectedCity: null,
@@ -330,7 +989,7 @@ export default {
     },
     // 关闭弹框时触发
     closeDialog () {
-      console.log(this.nodeId,this.$refs.tree,this.$refs.tree.getNode(this.nodeId))
+      console.log(this.nodeId, this.$refs.tree, this.$refs.tree.getNode(this.nodeId))
       this.$refs.tree.setChecked(this.nodeId, false)
     },
     recursiveList (list) {
@@ -440,22 +1099,22 @@ export default {
       this.$refs.cusMap.addWeatherPoints(id, yj)
     },
     jumpToPoint () {
-      if (this.position.lat && this.position.lon) {
-        this.$refs.cusMap.flyToPoint([this.position.lat, this.position.lon])
-      } else {
-        this.$message.warning('请输入经纬度')
-      }
+      // if (this.position.lat && this.position.lon) {
+      //   this.$refs.cusMap.flyToPoint([this.position.lat, this.position.lon])
+      // } else {
+      //   this.$message.warning('请输入经纬度')
+      // }
     },
-    async jumpToArea () {
-      if (this.selectedCity) {
-        const { data } = await getCityPosition({
-          id: this.selectedCity[this.selectedCity.length - 1],
-          type: this.selectedCity.length - 1
-        })
-        this.$refs.cusMap.flyTo({ maxX: data.st_xmax, maxY: data.st_ymax, minX: data.st_xmin, minY: data.st_ymin })
-      } else {
-        this.$message.warning('请选择地区')
-      }
+    jumpToArea () {
+      // if (this.selectedCity) {
+      //   const { data } = await getCityPosition({
+      //     id: this.selectedCity[this.selectedCity.length - 1],
+      //     type: this.selectedCity.length - 1
+      //   })
+      //   this.$refs.cusMap.flyTo({ maxX: data.st_xmax, maxY: data.st_ymax, minX: data.st_xmin, minY: data.st_ymin })
+      // } else {
+      //   this.$message.warning('请选择地区')
+      // }
     },
     takeLineMeasure () { // 测距
       this.$refs.cusMap.createLine()
@@ -498,110 +1157,110 @@ export default {
       const [firstPoint, lastPoint] = layer.getLatLngs()
       layer.bindPopup(`${(firstPoint.distanceTo(lastPoint) / 1000).toFixed(4)} km`).openPopup()
     },
-    async handleDrawRect (layer) { // 面查询
-      if (this.showSearchResult) {
-        this.searchResultData = null
-        this.showSearchResult = false
-      }
-      const latlons = [...layer.getLatLngs()[0], layer.getLatLngs()[0][0]].map(({ lat, lng }) => `${lng} ${lat}`).join(',')
-      const loading = this.$loading({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)'
-      })
-      try {
-        const { data } = await searchByArea({ latlons })
-        loading.close()
-        if (data.data && data.data.length > 0) {
-          this.searchResultData = data.data
-          this.showSearchResult = true
-          layer.on('click', e => {
-            this.searchResultData = data.data
-            this.showSearchResult = true
-          })
-        } else {
-          this.$message.info('没有查询到数据')
-        }
-      } catch (e) {
-        console.log(e)
-      } finally {
-        loading.close()
-      }
+    handleDrawRect (layer) { // 面查询
+      // if (this.showSearchResult) {
+      //   this.searchResultData = null
+      //   this.showSearchResult = false
+      // }
+      // const latlons = [...layer.getLatLngs()[0], layer.getLatLngs()[0][0]].map(({ lat, lng }) => `${lng} ${lat}`).join(',')
+      // const loading = this.$loading({
+      //   lock: true,
+      //   text: 'Loading',
+      //   spinner: 'el-icon-loading',
+      //   background: 'rgba(0, 0, 0, 0.7)'
+      // })
+      // try {
+      //   const { data } = await searchByArea({ latlons })
+      //   loading.close()
+      //   if (data.data && data.data.length > 0) {
+      //     this.searchResultData = data.data
+      //     this.showSearchResult = true
+      //     layer.on('click', e => {
+      //       this.searchResultData = data.data
+      //       this.showSearchResult = true
+      //     })
+      //   } else {
+      //     this.$message.info('没有查询到数据')
+      //   }
+      // } catch (e) {
+      //   console.log(e)
+      // } finally {
+      //   loading.close()
+      // }
     },
     handleDrawPolygon (layer) {
-      if (this.polygonType === 1) {
-        const area = this.$refs.cusMap.measureArea(layer.getLatLngs()[0])
-        console.log(area)
-        layer.bindPopup(`${area.toFixed(4)} ㎡`).openPopup()
-      } else {
-        this.handleDrawRect(layer)
-      }
+      // if (this.polygonType === 1) {
+      //   const area = this.$refs.cusMap.measureArea(layer.getLatLngs()[0])
+      //   console.log(area)
+      //   layer.bindPopup(`${area.toFixed(4)} ㎡`).openPopup()
+      // } else {
+      //   this.handleDrawRect(layer)
+      // }
     },
     drawPoint () {
-      this.$refs.cusMap.createPoint()
+      // this.$refs.cusMap.createPoint()
     },
     drawRect () {
-      this.$refs.cusMap.createRect()
+      // this.$refs.cusMap.createRect()
     },
     drawPolygon () {
-      this.polygonType = 2
-      this.$refs.cusMap.createPolygon()
+      // this.polygonType = 2
+      // this.$refs.cusMap.createPolygon()
     },
-    async getPositionByShp ({ file }) {
-      const { name } = file
-      const names = name.split('.')
-      const suffix = names[names.length - 1].toLocaleLowerCase()
-      if (suffix !== 'zip') {
-        this.$message({ type: 'warning', message: '文件类型只能为zip格式' })
-      } else {
-        const formData = new FormData()
-        formData.append('file', file)
-        const { data: { url, maxX, maxY, minX, minY } } = await uploadShp(formData)
-        this.chooseShp = false
-        this.$refs.cusMap.addShp(url, { maxX, maxY, minX, minY })
-      }
+    getPositionByShp ({ file }) {
+      // const { name } = file
+      // const names = name.split('.')
+      // const suffix = names[names.length - 1].toLocaleLowerCase()
+      // if (suffix !== 'zip') {
+      //   this.$message({ type: 'warning', message: '文件类型只能为zip格式' })
+      // } else {
+      //   const formData = new FormData()
+      //   formData.append('file', file)
+      //   const { data: { url, maxX, maxY, minX, minY } } = await uploadShp(formData)
+      //   this.chooseShp = false
+      //   this.$refs.cusMap.addShp(url, { maxX, maxY, minX, minY })
+      // }
     },
     async getCitys () {
-      const { data } = await getCitys()
-      this.cityList = data
+      // const { data } = await getCitys()
+      // this.cityList = data
     },
     resultItemClick ({ flag, node }) {
-      this.handleCheckboxChange(flag, node)
+      // this.handleCheckboxChange(flag, node)
     },
     handleCloseSearchResult () {
-      this.searchResultData = null
-      this.showSearchResult = false
+      // this.searchResultData = null
+      // this.showSearchResult = false
     },
-    async handleSearchByCondition () { // 复合查询
-      if (this.showSearchResult) {
-        this.searchResultData = null
-        this.showSearchResult = false
-      }
-      const loading = this.$loading({
-        lock: true,
-        text: 'Loading',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.7)'
-      })
-      try {
-        const { data } = await searchByCondition({
-          countyId: this.combine.city[this.combine.city.length - 1],
-          type: this.combine.type,
-          time: this.combine.date
-        })
-        loading.close()
-        if (data.data && data.data.length > 0) {
-          this.searchResultData = data.data
-          this.showSearchResult = true
-        } else {
-          this.$message.info('没有查询到数据')
-        }
-      } catch (e) {
-        console.log(e)
-      } finally {
-        loading.close()
-      }
+    handleSearchByCondition () { // 复合查询
+      // if (this.showSearchResult) {
+      //   this.searchResultData = null
+      //   this.showSearchResult = false
+      // }
+      // const loading = this.$loading({
+      //   lock: true,
+      //   text: 'Loading',
+      //   spinner: 'el-icon-loading',
+      //   background: 'rgba(0, 0, 0, 0.7)'
+      // })
+      // try {
+      //   const { data } = await searchByCondition({
+      //     countyId: this.combine.city[this.combine.city.length - 1],
+      //     type: this.combine.type,
+      //     time: this.combine.date
+      //   })
+      //   loading.close()
+      //   if (data.data && data.data.length > 0) {
+      //     this.searchResultData = data.data
+      //     this.showSearchResult = true
+      //   } else {
+      //     this.$message.info('没有查询到数据')
+      //   }
+      // } catch (e) {
+      //   console.log(e)
+      // } finally {
+      //   loading.close()
+      // }
     },
     handleHQ (name) {
       console.log(name)
@@ -710,7 +1369,7 @@ export default {
       })
     },
     handleCommand (name) {
-      this.handleHQ(name)
+      // this.handleHQ(name)
     }
   },
   computed: {
@@ -723,7 +1382,7 @@ export default {
     this.imgLayers = {}
     this.polygonLayers = {}
     this.getCitys()
-    this.getLayerList()
+    // this.getLayerList()
   }
 }
 </script>
