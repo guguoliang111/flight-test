@@ -1,68 +1,23 @@
-'use strict'
-const { SYSTEM_NAME, WZW, YXY, XZH } = require('./src/constant')
-
-const name = SYSTEM_NAME
-
 module.exports = {
-  publicPath: './',
-  outputDir: 'dist',
-  assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
-  productionSourceMap: false,
-  devServer: {
-    port: 10086,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    disableHostCheck: true,
+  lintOnSave: false, // 文件保存时候，就进行eslint规范检测
+  devServer: {							// 实时保存、编译的配置段
+    open:true,							// 自动开启浏览器
+    host: 'localhost',				// 服务主机名地址
+    port: 8080,						// 服务运行端口
     proxy: {
-      [process.env.VUE_APP_BASE_API]: { // 服务器
-        target: 'http://192.168.1.130:8032/soil',
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: ''
-        }
+      '/pg-service': {
+          // target: 'http://imgdt.itfsm03.com/pg-service',
+          target: 'http://dmbb.itfsm03.com/pg-service',
+          // target: 'http://dmbb.itfsm03.com:8080/pg-service',
+          // target: 'http://gwx.itfsm.com/pg-service',
+          // target: 'http://localhost:9999/pg-service',
+          // target: 'http://47.114.189.79/pg-service',
+          // target: 'http://47.114.179.237/pg-service',
+          changeOrigin: true,
+          pathRewrite: {
+              '^/pg-service': ''
+          }
       },
-      [process.env.VUE_APP_GEO_SERVER_API]: { // geoserve
-        target: 'http://192.168.1.130:8032/geoserve',
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + process.env.VUE_APP_GEO_SERVER_API]: ''
-        }
-      },
-      [WZW]: { // 王正文
-        target: 'http://192.168.1.133:9090',
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + WZW]: ''
-        }
-      },
-      [XZH]: { // 许仲昊
-        target: 'http://192.168.1.159:8080/soil',
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + XZH]: ''
-        }
-      },
-      [YXY]: { // 杨雪洋
-        target: 'http://192.168.1.185:9099',
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + YXY]: ''
-        }
-      },
-      '/shuiba': { // 服务器
-        target: 'http://web.atlasinfo.com.cn:8032/geoserver',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/shuiba': ''
-        }
-      }
     }
-  },
-  configureWebpack: {
-    name
   }
 }

@@ -1,24 +1,29 @@
-
-# 典型地物光谱数据库管理系统
+# flight-test
 
 ## Project setup
 ```
-yarn
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn dev
+yarn run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn build
+yarn run build
 ```
-### 账号及密码：
 
-| 级别 | 账号 | 密码 |
-| --- | --- | --- |
-| 管理员 | admin | 123456 |
+### Run your tests
+```
+yarn run test
+```
 
-=======
+### Lints and fixes files
+```
+yarn run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,16 +1,12 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
+<style lang="less">
+*{
+  padding: 0;
+  margin: 0;
 }
-</script>
-<style scoped>
-  .el-aside {
-    background: linear-gradient(to top,#3AF8D6,#43E97D);
-  }
 </style>
